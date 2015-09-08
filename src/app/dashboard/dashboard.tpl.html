@@ -22,7 +22,7 @@
           <i class="fa fa-arrow-down"></i>
           <p>Today</p>
         </button>
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.showPostponeSubActions = true">
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.showPostponeSubActions = true; DashboardCtrl.showTodaySubActions = false;">
           <i class="fa fa-arrow-right"></i>
           <p>Later</p>
         </button>
@@ -50,7 +50,25 @@
           <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask()">
             <i class="fa fa-calendar-times-o"></i>
             <p>Someday</p>
-          </button
+          </button>
+        </div>
+        <div class="sub-actions animate-if" ng-if="DashboardCtrl.showTodaySubActions">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask()">
+            <i class="fa fa-times-circle-o"></i>
+            <p>No Alarm</p>
+          </button>
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(1)">
+            <i class="fa fa-clock-o"></i>
+            <p>In 1 Hour</p>
+          </button>
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(4)">
+            <i class="fa fa-clock-o"></i>
+            <p>In 4 Hours</p>
+          </button>
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(8)">
+            <i class="fa fa-clock-o"></i>
+            <p>In 8 Hours</p>
+          </button>
         </div>
     </div>
   </div>

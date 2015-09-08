@@ -55,6 +55,25 @@ angular.module('moment.components.api.wunderlist', [])
             revision: task.revision
           }
         });
+      },
+      getAllRemindersForList: function (list) {
+        return $http({
+          method: 'GET',
+          url: 'https://a.wunderlist.com/api/v1/reminders',
+          params: {
+            list_id: list.id
+          }
+        });
+      },
+      createReminderForTask: function (task, date) {
+        return $http({
+          method: 'POST',
+          url: 'https://a.wunderlist.com/api/v1/reminders',
+          data: {
+            task_id: task.id,
+            date: date
+          }
+        });
       }
     };
 

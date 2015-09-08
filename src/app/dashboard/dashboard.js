@@ -5,6 +5,7 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
     var DashboardCtrl = this;
 
     DashboardCtrl.listByTaskId = {};
+    DashboardCtrl.remindersByTaskId = {};
 
     var _collectTodaysTasks = function () {
       DashboardCtrl.todaysTasks = [];
@@ -14,6 +15,13 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
 
         list.tasks.forEach(function (task) {
           DashboardCtrl.listByTaskId[task.id] = list;
+        });
+
+        list.reminders.forEach(function (reminder) {
+          if (!DashboardCtrl.remindersByTaskId[reminder.task_id]) {
+            DashboardCtrl.remindersByTaskId[reminder.task_id] = [];
+          }
+          DashboardCtrl.remindersByTaskId[reminder.task_id].push(reminder);
         });
       });
 
@@ -26,6 +34,8 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
       });
 
       DashboardCtrl.focusedTasks = [DashboardCtrl.todaysTasks[0]];
+
+      console.log(DashboardCtrl.remindersByTaskId);
     }
 
     var _fetchLists = function () {
@@ -36,6 +46,9 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
         DashboardCtrl.lists.forEach(function (list) {
           requests.push(wunderlistApi.getAllTasksForList(list).then(function (res) {
             list.tasks = res.data;
+          }));
+          requests.push(wunderlistApi.getAllRemindersForList(list).then(function (res) {
+            list.reminders = res.data;
           }));
         });
 
@@ -50,6 +63,7 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
       DashboardCtrl.focusedTasks.pop();
 
       DashboardCtrl.showPostponeSubActions = false;
+      DashboardCtrl.showTodaySubActions = false;
 
       if (!DashboardCtrl.todaysTasks.length) {
         DashboardCtrl.allDone = true;
@@ -88,13 +102,39 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
       wunderlistApi.updateTask(task).then(function () {
         _nextTask();
       });
+
+      // TODO: remove reminder on postpone?
     };
 
     DashboardCtrl.todayTask = function () {
-      _nextTask();
+      var task = DashboardCtrl.focusedTasks[0];
+
+      if (!DashboardCtrl.remindersByTaskId[task.id]) {
+        DashboardCtrl.showPostponeSubActions = false;
+        DashboardCtrl.showTodaySubActions = true;
+      } else {
+        _nextTask();
+      }
+    };
+
+    DashboardCtrl.remindTask = function (hours) {
+      if (!hours) {
+        _nextTask();
+        return;
+      }
+      
+      var task = DashboardCtrl.focusedTasks[0];
+
+      var date = new Date();
+      date.setHours(date.getHours() + hours);
+
+      wunderlistApi.createReminderForTask(task, date).then(function () {
+        _nextTask();
+      });
     };
 
     DashboardCtrl.showPostponeSubActions = false;
+    DashboardCtrl.showTodaySubActions = false;
 
     if (!!AccessToken.get()) {
       _fetchLists();
