@@ -4,6 +4,7 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
   .controller('DashboardCtrl', function ($rootScope, $http, $q, $timeout, wunderlistApi, AccessToken) {
     var DashboardCtrl = this;
 
+    DashboardCtrl.today = new Date();
     DashboardCtrl.listByTaskId = {};
     DashboardCtrl.remindersByTaskId = {};
 
@@ -122,7 +123,7 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
         _nextTask();
         return;
       }
-      
+
       var task = DashboardCtrl.focusedTasks[0];
 
       var date = new Date();

@@ -1,4 +1,4 @@
-<h1>Plan Your Day</h1>
+<h1 class="text-center">{{::DashboardCtrl.today | date: 'EEEE, MMM dd' }}</h1>
 
 <div class="content-container animate-if" ng-if="DashboardCtrl.displayContent">
   <div ng-if="!DashboardCtrl.allDone" class="animate-if">
@@ -6,7 +6,7 @@
         <i ng-repeat="task in DashboardCtrl.todaysTasks" class="fa fa-circle animate-repeat"></i>
     </div>
 
-    <ul class="focused-task-container row">
+    <ul class="focused-task-container row" ng-click="DashboardCtrl.showPostponeSubActions = false; DashboardCtrl.showTodaySubActions = false;">
       <li class="focused-task animate-repeat" ng-repeat="task in DashboardCtrl.focusedTasks">
         <div class="content">
           <h1 data-fittext data-fittext-max="40" data-fittext-min="12" class="">{{task.title}}</h1>
@@ -17,59 +17,61 @@
         </div>
       </li>
     </ul>
-    <div class="actions">
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.todayTask()">
-          <i class="fa fa-arrow-down"></i>
-          <p>Today</p>
+    <div class="actions-container">
+      <div class="actions animate-if" ng-if="!DashboardCtrl.showPostponeSubActions && !DashboardCtrl.showTodaySubActions">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.todayTask()">
+            <i class="fa fa-arrow-down"></i>
+            <p>Today</p>
+          </button>
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.showPostponeSubActions = true; DashboardCtrl.showTodaySubActions = false;">
+            <i class="fa fa-arrow-right"></i>
+            <p>Later</p>
+          </button>
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.resolveTask()">
+            <i class="fa fa-check"></i>
+            <p>Done</p>
+          </button>
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.deleteTask()">
+            <i class="fa fa-times"></i>
+            <p>Delete</p>
+          </button>
+      </div>
+      <div class="sub-actions animate-if" ng-if="DashboardCtrl.showPostponeSubActions">
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(1)">
+          <i class="fa fa-angle-right small"></i>
+          <p>Tomorrow</p>
         </button>
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.showPostponeSubActions = true; DashboardCtrl.showTodaySubActions = false;">
-          <i class="fa fa-arrow-right"></i>
-          <p>Later</p>
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(2)">
+          <i class="fa fa-angle-right"></i>
+          <p>In 2 Days</p>
         </button>
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.resolveTask()">
-          <i class="fa fa-check"></i>
-          <p>Done</p>
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(7)">
+          <i class="fa fa-angle-double-right"></i>
+          <p>Next Week</p>
         </button>
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.deleteTask()">
-          <i class="fa fa-times"></i>
-          <p>Delete</p>
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask()">
+          <i class="fa fa-calendar-times-o"></i>
+          <p>Someday</p>
         </button>
-        <div class="sub-actions animate-if" ng-if="DashboardCtrl.showPostponeSubActions">
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(1)">
-            <i class="fa fa-angle-right small"></i>
-            <p>Tomorrow</p>
-          </button>
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(2)">
-            <i class="fa fa-angle-right"></i>
-            <p>In 2 Days</p>
-          </button>
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(7)">
-            <i class="fa fa-angle-double-right"></i>
-            <p>Next Week</p>
-          </button>
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask()">
-            <i class="fa fa-calendar-times-o"></i>
-            <p>Someday</p>
-          </button>
-        </div>
-        <div class="sub-actions animate-if" ng-if="DashboardCtrl.showTodaySubActions">
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask()">
-            <i class="fa fa-times-circle-o"></i>
-            <p>No Alarm</p>
-          </button>
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(1)">
-            <i class="fa fa-clock-o"></i>
-            <p>In 1 Hour</p>
-          </button>
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(4)">
-            <i class="fa fa-clock-o"></i>
-            <p>In 4 Hours</p>
-          </button>
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(8)">
-            <i class="fa fa-clock-o"></i>
-            <p>In 8 Hours</p>
-          </button>
-        </div>
+      </div>
+      <div class="sub-actions animate-if" ng-if="DashboardCtrl.showTodaySubActions">
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask()">
+          <i class="fa fa-times-circle-o"></i>
+          <p>No Alarm</p>
+        </button>
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(1)">
+          <i class="fa fa-clock-o"></i>
+          <p>In 1 Hour</p>
+        </button>
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(4)">
+          <i class="fa fa-clock-o"></i>
+          <p>In 4 Hours</p>
+        </button>
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(8)">
+          <i class="fa fa-clock-o"></i>
+          <p>In 8 Hours</p>
+        </button>
+      </div>
     </div>
   </div>
   <div class="all-done animate-if" ng-if="DashboardCtrl.allDone">
