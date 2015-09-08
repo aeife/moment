@@ -6,7 +6,19 @@ moment-nav {
 
   .login-info {
     img {
-      height: $nav-height;
+      height: $nav-height - 4px;
+      margin-top: 2px;
+      border-radius: 100%;
+    }
+  }
+
+  .nav-link {
+    line-height: $nav-height;
+  }
+
+  .oauth {
+    &:hover {
+      cursor: pointer;
     }
   }
 }

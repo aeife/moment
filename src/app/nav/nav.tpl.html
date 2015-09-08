@@ -1,4 +1,6 @@
 <div class="container">
+  <a ng-if="!NavCtrl.displayHomeLink()" ui-sref="about" class="nav-link pull-left">About</a>
+  <a ng-if="NavCtrl.displayHomeLink()" ui-sref="home" class="nav-link pull-left">Home</a>
   <div ng-if="NavCtrl.isLoggedIn()">
     <div class="login-info pull-right">
       <img ng-src="https://a.wunderlist.com/api/v1/avatar?user_id={{NavCtrl.user.id}}" alt="" />

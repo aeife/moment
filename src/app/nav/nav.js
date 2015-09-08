@@ -8,7 +8,7 @@ angular.module('moment.nav', ['oauth', 'moment.components.api.wunderlist'])
       controllerAs: 'NavCtrl'
     };
   })
-  .controller('NavCtrl', function ($rootScope, AccessToken, wunderlistApi) {
+  .controller('NavCtrl', function ($rootScope, AccessToken, wunderlistApi, $state) {
     var NavCtrl = this;
 
     var _fetchUserData = function () {
@@ -19,6 +19,10 @@ angular.module('moment.nav', ['oauth', 'moment.components.api.wunderlist'])
 
     NavCtrl.isLoggedIn = function () {
       return !!AccessToken.get();
+    }
+
+    NavCtrl.displayHomeLink = function () {
+      return $state.current.name === 'about';
     }
 
     if (!!AccessToken.get()) {

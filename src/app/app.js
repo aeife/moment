@@ -26,6 +26,10 @@ angular.module('moment', [
         templateUrl: 'app/dashboard/dashboard.tpl.html',
         controller: 'DashboardCtrl',
         controllerAs: 'DashboardCtrl'
+      })
+      .state('about', {
+        url: '/about',
+        templateUrl: 'app/about/about.tpl.html'
       });
   })
   .run(function ($rootScope, $state) {
