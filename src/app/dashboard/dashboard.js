@@ -19,14 +19,10 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
 
       DashboardCtrl.todaysTasks = DashboardCtrl.todaysTasks.filter(function (task) {
         var today = new Date();
+        today = new Date(today.getUTCFullYear() + '-' + (today.getUTCMonth()+1) + '-' + today.getUTCDate());
         var taskDueDate = new Date(task.due_date);
-
-        // TODO: also include past dates, today >= taskDueDate
-
-        return  (task.due_date) &&
-                (today.getUTCFullYear() === taskDueDate.getUTCFullYear()) &&
-                (today.getUTCMonth() === taskDueDate.getUTCMonth()) &&
-                (today.getUTCDate() === taskDueDate.getUTCDate()+1);
+        task.$overdue = taskDueDate < today;
+        return  (task.due_date) && (taskDueDate <= today);
       });
 
       DashboardCtrl.focusedTasks = [DashboardCtrl.todaysTasks[0]];

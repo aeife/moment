@@ -10,8 +10,9 @@
       <li class="focused-task animate-repeat" ng-repeat="task in DashboardCtrl.focusedTasks">
         <div class="content">
           <h1 data-fittext data-fittext-max="40" data-fittext-min="12" class="">{{task.title}}</h1>
-          <p>
-             {{DashboardCtrl.listByTaskId[task.id].title}}
+          <p class="additional-info">
+            <span ng-class="{'overdue': task.$overdue}">Due: {{task.due_date | date: 'shortDate'}}</span>
+            <span>List: {{DashboardCtrl.listByTaskId[task.id].title}}</span>
           </p>
         </div>
       </li>

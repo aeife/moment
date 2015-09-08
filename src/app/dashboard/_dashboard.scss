@@ -16,6 +16,18 @@
 
 .content {
   overflow: hidden;
+  .additional-info {
+    font-weight: 100;
+    font-size: 16px;
+
+    span {
+      padding: 0 10px;
+
+      &.overdue {
+        color: $wunderlist-red;
+      }
+    }
+  }
 }
 
 .focused-task-container {
