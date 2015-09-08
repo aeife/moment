@@ -77,8 +77,13 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
     DashboardCtrl.postponeTask = function (dayCount) {
       var task = DashboardCtrl.focusedTasks[0];
       var taskDueDate = new Date(task.due_date);
-      var postponedDate = new Date(taskDueDate.setUTCDate(taskDueDate.getUTCDate() + dayCount + 1));
-      task.due_date = postponedDate.toISOString().split('T')[0];
+
+      if (!dayCount) {
+        task.remove = ['due_date'];
+      } else {
+        var postponeDate = new Date(taskDueDate.setUTCDate(taskDueDate.getUTCDate() + dayCount + 1));
+        task.due_date = postponedDate.toISOString().split('T')[0];
+      }
 
       wunderlistApi.updateTask(task).then(function () {
         _nextTask();
