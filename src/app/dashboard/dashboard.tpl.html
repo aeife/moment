@@ -1,8 +1,12 @@
-<h1>Your Moment</h1>
+<h1>Plan Your Day</h1>
 
-<div class="content-container">
+<div class="content-container animate-if" ng-if="DashboardCtrl.displayContent">
   <div ng-if="!DashboardCtrl.allDone" class="animate-if">
-    <ul class="focused-task-container">
+    <div class="row text-center task-counter">
+        <i ng-repeat="task in DashboardCtrl.todaysTasks" class="fa fa-circle animate-repeat"></i>
+    </div>
+
+    <ul class="focused-task-container row">
       <li class="focused-task animate-repeat" ng-repeat="task in DashboardCtrl.focusedTasks">
         <div class="content">
           <h1 data-fittext data-fittext-max="40" data-fittext-min="12" class="">{{task.title}}</h1>

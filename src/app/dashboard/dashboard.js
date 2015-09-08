@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api.wunderlist'])
-  .controller('DashboardCtrl', function ($rootScope, $http, $q, wunderlistApi, AccessToken) {
+  .controller('DashboardCtrl', function ($rootScope, $http, $q, $timeout, wunderlistApi, AccessToken) {
     var DashboardCtrl = this;
 
     DashboardCtrl.listByTaskId = {};
@@ -107,4 +107,8 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
         }
       });
     }
+
+    $timeout(function () {
+      DashboardCtrl.displayContent = true;
+    }, 1.500);
   });

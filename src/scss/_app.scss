@@ -8,3 +8,28 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.view-animate {
+  transition: all linear 0.5s;
+}
+.view-animate.ng-enter, .view-animate.ng-leave {
+  position:absolute;
+  top:$nav-height;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.view-animate.ng-enter {
+  opacity: 0;
+  transition-delay: 0.5s;
+}
+.view-animate.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.view-animate.ng-leave {
+  opacity: 1;
+}
+.view-animate.ng-leave.ng-leave-active {
+  opacity: 0;
+}
