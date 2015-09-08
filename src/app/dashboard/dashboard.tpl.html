@@ -1,0 +1,59 @@
+<h1>DashboardCtrl</h1>
+
+<oauth
+  site="https://www.wunderlist.com"
+  client-id="a9b289a663deb74050b2"
+  redirect-uri="http://localhost:8000"
+  scope="public">
+</oauth>
+
+<div class="content-container">
+  <div ng-if="!DashboardCtrl.allDone" class="animate-if">
+    <ul class="focused-task-container">
+      <li class="focused-task animate-repeat" ng-repeat="task in DashboardCtrl.focusedTasks">
+        <div class="content">
+          <h1 data-fittext data-fittext-max="40" data-fittext-min="12" class="">{{task.title}}</h1>
+          <p>
+             {{DashboardCtrl.listByTaskId[task.id].title}}
+          </p>
+        </div>
+      </li>
+    </ul>
+    <div class="actions">
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.todayTask()">
+          <i class="fa fa-arrow-down"></i>
+          <p>Today</p>
+        </button>
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.showPostponeSubActions = true">
+          <i class="fa fa-arrow-right"></i>
+          <p>Later</p>
+        </button>
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.resolveTask()">
+          <i class="fa fa-check"></i>
+          <p>Done</p>
+        </button>
+        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.deleteTask()">
+          <i class="fa fa-times"></i>
+          <p>Delete</p>
+        </button>
+        <div class="sub-actions animate-if" ng-if="DashboardCtrl.showPostponeSubActions">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(1)">
+            <i class="fa fa-angle-right small"></i>
+            <p>Tomorrow</p>
+          </button>
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(2)">
+            <i class="fa fa-angle-right"></i>
+            <p>In 2 Days</p>
+          </button>
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(7)">
+            <i class="fa fa-angle-double-right"></i>
+            <p>Next Week</p>
+          </button>
+        </div>
+    </div>
+  </div>
+  <div class="all-done animate-if" ng-if="DashboardCtrl.allDone">
+    <i class="fa fa-check"></i>
+    <h1>All Done!</h1>
+  </div>
+</div>

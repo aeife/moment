@@ -1,0 +1,9 @@
+body {
+  background-color: #E8E3C5
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
