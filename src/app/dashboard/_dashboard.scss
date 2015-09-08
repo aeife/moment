@@ -65,29 +65,39 @@
 
 .actions, .sub-actions {
   text-align: center;
+  width: 400px;
+  margin: 0 auto;
 
-  button {
-    width: 80px;
-    height: 80px;
+  .button-wrapper {
+    display: inline;
+    float: left;
+    padding: 10px;
 
-    i {
-      font-size: 30px;
+    button {
+      width: 80px;
+      height: 80px;
+      border-radius: 100%;
 
-      &.small {
-        font-size: 25px;
-        line-height: 30px;
+      i {
+        font-size: 50px;
+
+        &.small {
+          font-size: 25px;
+          line-height: 30px;
+        }
       }
     }
 
     p {
       margin: 10px 0 0 0;
+      font-size: 18px;
     }
   }
 }
 
 .sub-actions {
-  p {
-    font-size: 11px;
+  .button-wrapper p {
+    font-size: 14px;
   }
 }
 

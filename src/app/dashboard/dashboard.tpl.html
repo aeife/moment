@@ -19,58 +19,82 @@
     </ul>
     <div class="actions-container">
       <div class="actions animate-if" ng-if="!DashboardCtrl.showPostponeSubActions && !DashboardCtrl.showTodaySubActions">
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.todayTask()">
-            <i class="fa fa-arrow-down"></i>
+          <div class="button-wrapper">
+            <button type="button" class="btn btn-default" ng-click="DashboardCtrl.todayTask()">
+              <i class="fa fa-arrow-down"></i>
+            </button>
             <p>Today</p>
-          </button>
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.showPostponeSubActions = true; DashboardCtrl.showTodaySubActions = false;">
-            <i class="fa fa-arrow-right"></i>
+          </div>
+          <div class="button-wrapper">
+            <button type="button" class="btn btn-default" ng-click="DashboardCtrl.showPostponeSubActions = true; DashboardCtrl.showTodaySubActions = false;">
+              <i class="fa fa-arrow-right"></i>
+            </button>
             <p>Later</p>
-          </button>
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.resolveTask()">
-            <i class="fa fa-check"></i>
+          </div>
+          <div class="button-wrapper">
+            <button type="button" class="btn btn-default" ng-click="DashboardCtrl.resolveTask()">
+              <i class="fa fa-check"></i>
+            </button>
             <p>Done</p>
-          </button>
-          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.deleteTask()">
-            <i class="fa fa-times"></i>
+          </div>
+          <div class="button-wrapper">
+            <button type="button" class="btn btn-default" ng-click="DashboardCtrl.deleteTask()">
+              <i class="fa fa-times"></i>
+            </button>
             <p>Delete</p>
-          </button>
+          </div>
       </div>
       <div class="sub-actions animate-if" ng-if="DashboardCtrl.showPostponeSubActions">
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(1)">
-          <i class="fa fa-angle-right small"></i>
+        <div class="button-wrapper">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(1)">
+            <i class="fa fa-angle-right small"></i>
+          </button>
           <p>Tomorrow</p>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(2)">
-          <i class="fa fa-angle-right"></i>
+        </div>
+        <div class="button-wrapper">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(2)">
+            <i class="fa fa-angle-right"></i>
+          </button>
           <p>In 2 Days</p>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(7)">
-          <i class="fa fa-angle-double-right"></i>
+        </div>
+        <div class="button-wrapper">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask(7)">
+            <i class="fa fa-angle-double-right"></i>
+          </button>
           <p>Next Week</p>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask()">
-          <i class="fa fa-calendar-times-o"></i>
+        </div>
+        <div class="button-wrapper">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.postponeTask()">
+            <i class="fa fa-calendar-times-o"></i>
+          </button>
           <p>Someday</p>
-        </button>
+        </div>
       </div>
       <div class="sub-actions animate-if" ng-if="DashboardCtrl.showTodaySubActions">
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask()">
-          <i class="fa fa-times-circle-o"></i>
+        <div class="button-wrapper">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask()">
+            <i class="fa fa-times-circle-o"></i>
+          </button>
           <p>No Alarm</p>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(1)">
-          <i class="fa fa-clock-o"></i>
+        </div>
+        <div class="button-wrapper">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(1)">
+            <i class="fa fa-clock-o"></i>
+          </button>
           <p>In 1 Hour</p>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(4)">
-          <i class="fa fa-clock-o"></i>
+        </div>
+        <div class="button-wrapper">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(4)">
+            <i class="fa fa-clock-o"></i>
+          </button>
           <p>In 4 Hours</p>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(8)">
-          <i class="fa fa-clock-o"></i>
+        </div>
+        <div class="button-wrapper">
+          <button type="button" class="btn btn-default" ng-click="DashboardCtrl.remindTask(8)">
+            <i class="fa fa-clock-o"></i>
+          </button>
           <p>In 8 Hours</p>
-        </button>
+        </div>
       </div>
     </div>
   </div>
