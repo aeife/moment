@@ -19,6 +19,12 @@ angular.module('moment.components.api.wunderlist', [])
   })
   .service('wunderlistApi', function ($http) {
     var wunderlistApi = {
+      getCurrentUser: function () {
+        return $http({
+          method: 'GET',
+          url: 'https://a.wunderlist.com/api/v1/user',
+        });
+      },
       getAllLists: function () {
         return $http({
           method: 'GET',

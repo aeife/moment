@@ -1,0 +1,15 @@
+<div class="container">
+  <div ng-if="NavCtrl.isLoggedIn()">
+    <div class="login-info pull-right">
+      <img ng-src="https://a.wunderlist.com/api/v1/avatar?user_id={{NavCtrl.user.id}}" alt="" />
+      {{NavCtrl.user.name}}
+      <oauth
+        site="https://www.wunderlist.com"
+        client-id="a9b289a663deb74050b2"
+        redirect-uri="http://localhost:8000/"
+        scope="public"
+        storage="localStorage">
+      </oauth>
+    </div>
+  </div>
+</div>

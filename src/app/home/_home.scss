@@ -1,0 +1,27 @@
+.home {
+  .jumbotron {
+    background-color: inherit;
+    text-align: center
+  }
+
+  .oauth {
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .btn-lg;
+    background-color: $wunderlist-blue;
+    background-image: url("/images/wunderlist_logo.png");
+    background-position: 0 0;
+    background-size: 63px;
+    background-repeat: no-repeat;
+    padding-left: 50px;
+    padding: 20px 20px 20px 70px;
+  }
+
+  .login {
+    text-align: center;
+  }
+
+  .start {
+    text-align: center;
+  }
+}

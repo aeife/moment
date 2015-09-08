@@ -1,0 +1,12 @@
+moment-nav {
+  position: fixed;
+  width: 100%;
+  height: $nav-height;
+  top: 0;
+
+  .login-info {
+    img {
+      height: $nav-height;
+    }
+  }
+}

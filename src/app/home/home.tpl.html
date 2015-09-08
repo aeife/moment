@@ -1,0 +1,19 @@
+<div class="home">
+  <div class="jumbotron">
+    <h1>Moment</h1>
+    <p>Plan your Wunderlist day!</p>
+  </div>
+
+  <div class="login" ng-if="!HomeCtrl.isLoggedIn()">
+    <oauth
+      site="https://www.wunderlist.com"
+      client-id="a9b289a663deb74050b2"
+      redirect-uri="http://localhost:8000"
+      scope="public"
+      storage="localStorage">
+    </oauth>
+  </div>
+  <div class="start" ng-if="HomeCtrl.isLoggedIn()">
+    <a ui-sref="dashboard" class="btn btn-default btn-lg">Start your moment</a>
+  </div>
+</div>
