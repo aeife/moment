@@ -3,17 +3,18 @@ moment-nav {
   width: 100%;
   height: $nav-height;
   top: 0;
+  padding: 10px 0;
 
   .login-info {
     img {
-      height: $nav-height - 4px;
+      height: $nav-height - 24px;
       margin-top: 2px;
       border-radius: 100%;
     }
   }
 
   .nav-link {
-    line-height: $nav-height;
+    line-height: $nav-height - 20px;
   }
 
   .oauth {

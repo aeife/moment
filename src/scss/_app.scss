@@ -10,11 +10,11 @@ body {
 }
 
 .wunder {
-  font-family: $font-family-condensed;
+  font-weight: 100;
 }
 
 .moment {
-  
+
 }
 
 .view-animate {
@@ -30,7 +30,8 @@ body {
 
 .view-animate.ng-enter {
   opacity: 0;
-  transition-delay: 0.5s;
+  transition-delay: 0.6s;
+  transition-duration: 2s;
 }
 .view-animate.ng-enter.ng-enter-active {
   opacity: 1;
