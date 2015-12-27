@@ -1,7 +1,11 @@
 .home {
   .jumbotron {
     background-color: inherit;
-    text-align: center
+    text-align: center;
+
+    img {
+      max-width: 300px;
+    }
   }
 
   .oauth {
