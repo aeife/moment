@@ -96,7 +96,7 @@ angular.module('moment.dashboard', ['oauth', 'ngFitText', 'moment.components.api
       if (!dayCount) {
         task.remove = ['due_date'];
       } else {
-        var postponeDate = new Date(taskDueDate.setUTCDate(taskDueDate.getUTCDate() + dayCount + 1));
+        var postponedDate = new Date(taskDueDate.setUTCDate(taskDueDate.getUTCDate() + dayCount + 1));
         task.due_date = postponedDate.toISOString().split('T')[0];
       }
 
